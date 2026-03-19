@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>药韵敦煌 - 国潮养生文创品牌</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dunhuang-red: #c53d3d;
+            --dunhuang-gold: #d4af37;
+            --dunhuang-sand: #e6d5b8;
+            --dunhuang-dark: #3a2618;
+            --dunhuang-blue: #2a5c8a;
+            --dunhuang-green: #2d5a27;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background-color: #fefaf0;
+            color: #3a2618;
+            line-height: 1.8;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            background: white;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(58, 38, 24, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--dunhuang-dark);
+        }
+        
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            color: var(--dunhuang-red);
+            font-size: 2.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--dunhuang-dark);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--dunhuang-red), var(--dunhuang-gold));
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cart-icon {
+            position: relative;
+            font-size: 1.3rem;
+            color: var(--dunhuang-red);
+            text-decoration: none;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--dunhuang-red);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 横幅 */
+        .hero {
+            background: linear-gradient(135deg, rgba(197, 61, 61, 0.9), rgba(58, 38, 24, 0.9)), 
+                        url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--dunhuang-gold);
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.9;
+        }
+        
+        .guochao-btn {
+            background: linear-gradient(135deg, var(--dunhuang-red), var(--dunhuang-dark));
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-family: 'Ma Shan Zheng', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(197, 61, 61, 0.3);
+        }
+        
+        .guochao-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(197, 61, 61, 0.4);
+        }
+        
+        /* 产品展示区 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3rem;
+            color: var(--dunhuang-dark);
+            display: inline-block;
+            padding: 0 3rem;
+            background: #fefaf0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(to right, var(--dunhuang-sand), var(--dunhuang-gold), var(--dunhuang-sand));
+        }
+        
+        /* 产品网格 */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(58, 38, 24, 0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(58, 38, 24, 0.2);
+        }
+        
+        .hot-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #c53d3d);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .product-image {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .product-info {
+            padding: 2rem;
+        }
+        
+        .product-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            color: var(--dunhuang-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .product-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: var(--dunhuang-sand);
+            color: var(--dunhuang-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .tag.hot {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            min-height: 80px;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .current-price {
+            font-size: 2.2rem;
+            color: var(--dunhuang-red);
+            font-weight: bold;
+        }
+        
+        .original-price {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--dunhuang-red), #e55039);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(197, 61, 61, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--dunhuang-red);
+            border: 2px solid var(--dunhuang-red);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dunhuang-red);
+            color: white;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, var(--dunhuang-dark), #2c3e50);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dunhuang-gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--dunhuang-red);
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <i class="fas fa-spa logo-icon"></i>
+                <span>药韵敦煌</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#bracelets">养生手串</a>
+            <a href="#sachets">古法香囊</a>
+            <a href="#moxibustion">智能艾灸</a>
+            <a href="#about">品牌故事</a>
+            <a href="cart.html" class="cart-icon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section class="hero">
+        <h1 class="hero-title">国潮养生 · 敦煌智慧</h1>
+        <p class="hero-subtitle">将千年敦煌养生智慧融入现代生活，打造年轻人追捧的国潮养生文创品牌</p>
+        <button class="guochao-btn" onclick="document.getElementById('bracelets').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-gem"></i> 探索养生好物
+        </button>
+    </section>
+
+    <!-- 养生手串系列 -->
+    <div class="container" id="bracelets">
+        <div class="section-title">
+            <h2>养生手串系列</h2>
+        </div>
+        
+        <div class="products-grid">
+            <!-- 产品1：九色鹿菩提手串 -->
+            <div class="product-card">
+                <div class="hot-badge">热销爆款</div>
+                <div class="product-image" style="background-image: url('九色鹿菩提手串.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">九色鹿菩提手串</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">助眠安神</span>
+                        <span class="tag">天然材质</span>
+                        <span class="tag">招财转运</span>
+                    </div>
+                    <p class="product-description">敦煌壁画《九色鹿经图》灵感，天然菩提子，助眠安神，招财转运</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 298</span>
+                            <span class="original-price">¥ 398</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 3,568件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-1.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(1)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品2：飞天蜜蜡手串 -->
+            <div class="product-card">
+                <div class="hot-badge">限量款</div>
+                <div class="product-image" style="background-image: url('飞天蜜蜡手串.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">飞天蜜蜡手串</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">美容养颜</span>
+                        <span class="tag">天然蜜蜡</span>
+                        <span class="tag">提升气质</span>
+                    </div>
+                    <p class="product-description">天然蜜蜡，飞天造型，美容养颜，提升气质，限量发售</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 598</span>
+                            <span class="original-price">¥ 798</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 1,892件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-2.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(2)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品3：莫高窟朱砂手串 -->
+            <div class="product-card">
+                <div class="hot-badge">辟邪护身</div>
+                <div class="product-image" style="background-image: url('莫高窟朱砂手串.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">莫高窟朱砂手串</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">辟邪护身</span>
+                        <span class="tag">朱砂材质</span>
+                        <span class="tag">文化传承</span>
+                    </div>
+                    <p class="product-description">天然朱砂，莫高窟壁画纹样，辟邪护身，安神定惊</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 398</span>
+                            <span class="original-price">¥ 498</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 2,456件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-3.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(3)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 古法香囊系列 -->
+    <div class="container" id="sachets">
+        <div class="section-title">
+            <h2>古法香囊系列</h2>
+        </div>
+        
+        <div class="products-grid">
+            <!-- 产品4：敦煌瑞兽香囊 -->
+            <div class="product-card">
+                <div class="hot-badge">办公室必备</div>
+                <div class="product-image" style="background-image: url('敦煌瑞兽香囊.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">敦煌瑞兽香囊</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">驱蚊安神</span>
+                        <span class="tag">瑞兽造型</span>
+                        <span class="tag">汉方药材</span>
+                    </div>
+                    <p class="product-description">麒麟瑞兽造型，汉方药材填充，驱蚊安神，办公室必备</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 168</span>
+                            <span class="original-price">¥ 228</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 4,123件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-4.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(4)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品5：飞天香囊挂件 -->
+            <div class="product-card">
+                <div class="hot-badge">车载挂件</div>
+                <div class="product-image" style="background-image: url('飞天香囊挂件.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">飞天香囊挂件</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">助眠放松</span>
+                        <span class="tag">飞天造型</span>
+                        <span class="tag">车载挂件</span>
+                    </div>
+                    <p class="product-description">飞天造型，薰衣草+艾草填充，助眠放松，可作车载挂件</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 128</span>
+                            <span class="original-price">¥ 168</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 3,567件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-5.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(5)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品6：莫高窟药香囊 -->
+            <div class="product-card">
+                <div class="hot-badge">防疫配方</div>
+                <div class="product-image" style="background-image: url('莫高窟药香囊.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">莫高窟药香囊</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">防疫配方</span>
+                        <span class="tag">净化空气</span>
+                        <span class="tag">莫高窟纹样</span>
+                    </div>
+                    <p class="product-description">莫高窟纹样，防疫药材配方，净化空气，预防感冒</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 198</span>
+                            <span class="original-price">¥ 258</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 2,890件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-6.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看溯源
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(6)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 智能艾灸系列 -->
+    <div class="container" id="moxibustion">
+        <div class="section-title">
+            <h2>智能艾灸系列</h2>
+        </div>
+        
+        <div class="products-grid">
+            <!-- 产品7：敦煌智能艾灸盒 -->
+            <div class="product-card">
+                <div class="hot-badge">智能温控</div>
+                <div class="product-image" style="background-image: url('敦煌智能艾灸盒.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">敦煌智能艾灸盒</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">智能温控</span>
+                        <span class="tag">APP操控</span>
+                        <span class="tag">家庭健康</span>
+                    </div>
+                    <p class="product-description">智能温控，APP操控，敦煌壁画纹样设计，家庭养生必备</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 698</span>
+                            <span class="original-price">¥ 898</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 1,567件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-7.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看详情
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(7)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品8：敦煌药浴包 -->
+            <div class="product-card">
+                <div class="hot-badge">泡脚养生</div>
+                <div class="product-image" style="background-image: url('敦煌药浴包.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">敦煌药浴包</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">泡脚养生</span>
+                        <span class="tag">汉方药材</span>
+                        <span class="tag">缓解疲劳</span>
+                    </div>
+                    <p class="product-description">汉方药材，泡脚养生，缓解疲劳，改善睡眠质量</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 98</span>
+                            <span class="original-price">¥ 128</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 5,234件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-8.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看详情
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(8)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 产品9：艾草颈椎贴 -->
+            <div class="product-card">
+                <div class="hot-badge">办公室必备</div>
+                <div class="product-image" style="background-image: url('艾草颈椎贴.png');"></div>
+                <div class="product-info">
+                    <h3 class="product-title">艾草颈椎贴</h3>
+                    <div class="product-tags">
+                        <span class="tag hot">缓解酸痛</span>
+                        <span class="tag">办公室必备</span>
+                        <span class="tag">即贴即用</span>
+                    </div>
+                    <p class="product-description">发热艾草贴，缓解颈椎酸痛，办公室必备，即贴即用</p>
+                    <div class="product-price">
+                        <div>
+                            <span class="current-price">¥ 68</span>
+                            <span class="original-price">¥ 88</span>
+                        </div>
+                        <span style="color: var(--dunhuang-green);">🔥 已售 6,789件</span>
+                    </div>
+                    <div class="product-actions">
+                        <a href="product-9.html" class="btn btn-secondary">
+                            <i class="fas fa-eye"></i> 查看详情
+                        </a>
+                        <button class="btn btn-primary" onclick="addToCart(9)">
+                            <i class="fas fa-shopping-cart"></i> 加入购物车
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>药韵敦煌</h3>
+                <p>传承千年敦煌养生智慧<br>打造现代国潮养生品牌</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                    <a href="#"><i class="fab fa-douyin"></i></a>
+                    <a href="#"><i class="fab fa-xiaohongshu"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>地址：甘肃省敦煌市莫高窟文创园区</p>
+                <p>邮箱：contact@yaoyundunhuang.com</p>
+                <p>电话：400-123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>品牌承诺</h3>
+                <p>✓ 天然材质，溯源可查</p>
+                <p>✓ 匠心工艺，手工制作</p>
+                <p>✓ 文化传承，国潮创新</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+        
+        function addToCart(productId) {
+            cartCount++;
+            document.getElementById('cart-count').textContent = cartCount;
+            
+            // 动画效果
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 300);
+            
+            // 可以在这里添加更多购物车逻辑
+            alert(`已添加产品 ${productId} 到购物车！`);
+        }
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
